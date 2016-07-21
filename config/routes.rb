@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#error', as: 'failure'
   get '/profile', to: 'sessions#show', as: 'show'
   delete '/signout', to: 'sessions#destroy', as: 'signout'
+  get '/wishlists', to: 'wishlists#show', as: 'show_wishlist'
 end
