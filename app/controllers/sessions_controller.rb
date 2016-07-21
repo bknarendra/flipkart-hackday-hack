@@ -1,3 +1,4 @@
+
 class SessionsController < ApplicationController
   def create
     credentials = request.env['omniauth.auth']['credentials']
@@ -9,15 +10,20 @@ class SessionsController < ApplicationController
   end
 
   def show
+session['access_token'] = "3163517532-EhsW9yjxQBoUaUoXJQoHF0779iMvFPywnTJ4MCb"
+session['access_token_secret'] = "1JRSuPN6BKm8ZnwH3HpylY1iJrom5PqqZOutKk0CLhWEg"
     if session['access_token'] && session['access_token_secret'] && session[:twitter_handle]
       @db_user_obj = User.find_by_twitter_handle(session[:twitter_handle])
       unless @db_user_obj
         @db_user_obj = User.create(
-          twitter_handle: @user.screen_name,
+          twitter_handle: session[:twitter_handle],
           access_key: session['access_token'],
           secret_key: session['access_token_secret']
         )
       end
+      @user_products = UserProduct.get_user_products(@db_user_obj.id)
+      @user_products
+
     else
       redirect_to failure_path
     end
