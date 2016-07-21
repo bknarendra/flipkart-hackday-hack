@@ -132,7 +132,7 @@ textarea {
 }
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 13px;
   line-height: 18px;
   color: #333333;
@@ -936,8 +936,8 @@ select:focus:required:invalid:focus {
   padding: 17px 20px 18px;
   margin-top: 18px;
   margin-bottom: 18px;
-  background-color: #eeeeee;
-  border-top: 1px solid #ddd;
+  /*background-color: #eeeeee;*/
+  /*border-top: 1px solid #ddd;*/
   *zoom: 1;
 }
 .form-actions:before,
@@ -2861,9 +2861,9 @@ input[type="submit"].btn.btn-mini {
 .navbar .brand {
   float: left;
   display: block;
-  padding: 8px 20px 12px;
+  padding: 18px 20px 12px;
   margin-left: -20px;
-  font-size: 20px;
+  font-size: 35px;
   font-weight: 200;
   line-height: 1;
   color: #ffffff;

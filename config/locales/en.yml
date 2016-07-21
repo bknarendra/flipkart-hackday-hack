@@ -1,9 +1,8 @@
 en:
   app:
-    author: "Erik Michaels-Ober"
-    description: "A Ruby on Rails application that demonstrates how to use the Sign in with Twitter workflow using the twitter gem and OmniAuth."
-    description_html: "A %{ruby_on_rails} application that demonstrates how to use the %{sign_in_with_twitter} workflow using the %{twitter_gem} and %{omniauth}."
-    name: "Sign in with Twitter"
+    description: ""
+    description_html: ""
+    name: "Shop with Twitter"
   button:
     sign_in: "Sign in with Twitter"
     sign_out: "Sign out"
@@ -15,12 +14,7 @@ en:
     sign_in_with_twitter_html: "<a href=\"https://dev.twitter.com/docs/auth/sign-twitter\">Sign in with Twitter</a>"
     twitter_gem_html: "<a href=\"https://rubygems.org/gems/twitter\">twitter gem</a>"
   nav:
-    build_status: "Build Status"
-    dependency_status: "Dependency Status"
-    documentation: "Documentation"
-    resources: "Resources"
-    sash: "Fork me on GitHub"
-    source_code: "Source Code"
+    preferences: "Preferences"
   th:
     location: "Location"
     tweets: "Tweets"
