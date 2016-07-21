@@ -1,0 +1,9 @@
+development:
+  adapter: 'mysql2'
+  database: 'flipkart_hackday'
+  username: 'root'
+  password:
+  host: 'localhost'
+  pool: 100
+  timeout: 5000
+  reconnect: true

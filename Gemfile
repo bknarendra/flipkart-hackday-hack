@@ -2,6 +2,11 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '~> 4.2.7'
+gem "rake", "!= 0.9.0"
+gem 'activerecord'
+gem 'activesupport'
+gem 'activemodel'
+gem 'activerecord-import'
 
 gem 'haml'
 gem 'omniauth'
