@@ -9,7 +9,7 @@ namespace :shop_with_twitter do
     end
     topics = ["shopwithtwitter"]
     client.filter(track: topics.join(",")) do |object|
-      puts object.to_json
+
     end
   end
 

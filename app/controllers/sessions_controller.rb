@@ -1,14 +1,23 @@
 class SessionsController < ApplicationController
   def create
     credentials = request.env['omniauth.auth']['credentials']
+    info = request.env['omniauth.auth']['info']
     session[:access_token] = credentials['token']
     session[:access_token_secret] = credentials['secret']
+    session[:twitter_handle] = info["nickname"]
     redirect_to show_path, notice: 'Signed in'
   end
 
   def show
-    if session['access_token'] && session['access_token_secret']
-      @user = client.user(include_entities: true)
+    if session['access_token'] && session['access_token_secret'] && session[:twitter_handle]
+      @db_user_obj = User.find_by_twitter_handle(session[:twitter_handle])
+      unless @db_user_obj
+        @db_user_obj = User.create(
+          twitter_handle: @user.screen_name,
+          access_key: session['access_token'],
+          secret_key: session['access_token_secret']
+        )
+      end
     else
       redirect_to failure_path
     end

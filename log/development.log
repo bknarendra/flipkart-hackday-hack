@@ -1,2 +1,325 @@
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
 Migrating to CreateUserProducts (20160721182855)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20160721184431)
+  [1m[35m (14.7ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `twitter_handle` varchar(255) NOT NULL, `access_key` varchar(255) NOT NULL, `secret_key` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160721184431')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUserProducts (20160721184556)
+  [1m[35m (13.1ms)[0m  CREATE TABLE `user_products` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11) NOT NULL, `product_id` int(11) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160721184556')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProducts (20160721184637)
+  [1m[35m (11.0ms)[0m  CREATE TABLE `products` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(1000) NOT NULL, `product_url` varchar(1000) NOT NULL, `product_img_url` varchar(1000) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160721184637')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.5ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'flipkart_hackday'
+  AND fk.table_name = 'products'
+[0m
+  [1m[35m (0.2ms)[0m  SHOW CREATE TABLE `products`
+  [1m[36m (0.5ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'flipkart_hackday'
+  AND fk.table_name = 'user_products'
+[0m
+  [1m[35m (0.3ms)[0m  SHOW CREATE TABLE `user_products`
+  [1m[36m (0.6ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'flipkart_hackday'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.2ms)[0m  SHOW CREATE TABLE `users`
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:27:03 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (5.6ms)
+Completed 200 OK in 254ms (Views: 253.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/twitter?utf8=%E2%9C%93" for 127.0.0.1 at 2016-07-22 00:27:07 +0530
+
+
+Started GET "/auth/twitter/callback?utf8=%E2%9C%93&oauth_token=LoOmIgAAAAAAwMApAAABVg7Riz4&oauth_verifier=fmI95IEztfspi5IjBaH8Hc617abaHU84" for 127.0.0.1 at 2016-07-22 00:27:11 +0530
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "oauth_token"=>"LoOmIgAAAAAAwMApAAABVg7Riz4", "oauth_verifier"=>"fmI95IEztfspi5IjBaH8Hc617abaHU84"}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:27:14 +0530
+Processing by SessionsController#show as HTML
+  Rendered sessions/show.html.haml within layouts/application (7.9ms)
+Completed 200 OK in 723ms (Views: 20.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:45:24 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 12ms (Views: 12.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for 127.0.0.1 at 2016-07-22 00:45:25 +0530
+
+
+Started GET "/assets/screen.self-2f1a176138cd40e1a7e69f89018d0f5f3059a57bf7ab206182b62c883411f3fa.css?body=1" for 127.0.0.1 at 2016-07-22 00:45:25 +0530
+
+
+Started GET "/assets/bootstrap-responsive.self-17b25bbb797599c768ded94b2acec905df13eacfb2d8969f1ac0df0455adb66e.css?body=1" for 127.0.0.1 at 2016-07-22 00:45:25 +0530
+
+
+Started GET "/assets/bootstrap-alert.self-159824c5d9afdc0fbf98a18e46efda67b15f3cc75b6ee02cd7f7f583503f850d.js?body=1" for 127.0.0.1 at 2016-07-22 00:45:25 +0530
+
+
+Started GET "/assets/bootstrap-collapse.self-0b9cc2e998665eee499bfc2f64ecb5e5da786ddb5ae097f37f9b2586eb9fbb37.js?body=1" for 127.0.0.1 at 2016-07-22 00:45:25 +0530
+
+
+Started GET "/assets/application.self-fb28094035fc8f155b896e47c199355db7c84fc9d6214ed9800f1022ac2ece52.js?body=1" for 127.0.0.1 at 2016-07-22 00:45:25 +0530
+
+
+Started GET "/assets/bootstrap.self-ac07a5170adc56665fe3faa69e2d6b99a3bab5929f05670c31338b0013be5428.css?body=1" for 127.0.0.1 at 2016-07-22 00:45:26 +0530
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:45:41 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 10ms (Views: 9.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:45:55 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.6ms)
+Completed 200 OK in 11ms (Views: 11.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/twitter?utf8=%E2%9C%93" for 127.0.0.1 at 2016-07-22 00:46:01 +0530
+
+
+Started GET "/auth/twitter/callback?utf8=%E2%9C%93&oauth_token=LPVvugAAAAAAwMApAAABVg7i14E&oauth_verifier=rhtowKGAP1VpNtP9f7h4t9rUm2OzqCxd" for 127.0.0.1 at 2016-07-22 00:46:05 +0530
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "oauth_token"=>"LPVvugAAAAAAwMApAAABVg7i14E", "oauth_verifier"=>"rhtowKGAP1VpNtP9f7h4t9rUm2OzqCxd"}
+{"provider":"twitter","uid":"709250762","info":{"nickname":"bknar3ndra","name":"Narendra Rajput","email":null,"location":"Bengaluru, India","image":"http://pbs.twimg.com/profile_images/531365649130323968/BtQOSPyD_normal.jpeg","description":"#programmer, #hacker, #blogger","urls":{"Website":"https://t.co/ENh0momQgQ","Twitter":"https://twitter.com/bknar3ndra"}},"credentials":{"token":"709250762-IBCuFDYKJQ5UCHimBbMOXxtvM5gfGG6ZJ3NwToZv","secret":"voU70d7QysP6vZG79kmFiLAaYDnWZAmwhW4wqBJxGYIA1"},"extra":{"access_token":{"token":"709250762-IBCuFDYKJQ5UCHimBbMOXxtvM5gfGG6ZJ3NwToZv","secret":"voU70d7QysP6vZG79kmFiLAaYDnWZAmwhW4wqBJxGYIA1","consumer":{"key":"r9L3LNSwkUosmIXwt8UoSCgIh","secret":"Gr4yxcQzNyR3L6ODHSKjNiKhbEILFqwbqSF8cyDWZXQHFM10N1","options":{"signature_method":"HMAC-SHA1","request_token_path":"/oauth/request_token","authorize_path":"/oauth/authenticate","access_token_path":"/oauth/access_token","proxy":null,"scheme":"header","http_method":"post","oauth_version":"1.0","site":"https://api.twitter.com"},"http":{"address":"api.twitter.com","port":443,"local_host":null,"local_port":null,"curr_http_version":"1.1","keep_alive_timeout":2,"last_communicated":null,"close_on_empty_response":false,"socket":null,"started":false,"open_timeout":30,"read_timeout":30,"continue_timeout":null,"debug_output":null,"proxy_from_env":true,"proxy_uri":null,"proxy_address":null,"proxy_port":null,"proxy_user":null,"proxy_pass":null,"use_ssl":true,"ssl_context":{"cert":null,"key":null,"client_ca":null,"ca_file":null,"ca_path":null,"timeout":null,"verify_mode":0,"verify_depth":null,"renegotiation_cb":null,"verify_callback":null,"cert_store":null,"extra_chain_cert":null,"client_cert_cb":null,"session_id_context":null,"tmp_dh_callback":null,"session_get_cb":null,"session_new_cb":null,"session_remove_cb":null,"tmp_ecdh_callback":null,"servername_cb":null,"npn_protocols":null,"alpn_protocols":null,"alpn_select_cb":null,"npn_select_cb":null},"ssl_session":{},"sspi_enabled":false,"ca_file":null,"ca_path":null,"cert":null,"cert_store":null,"ciphers":null,"key":null,"ssl_timeout":null,"ssl_version":null,"verify_callback":null,"verify_depth":null,"verify_mode":0},"http_method":"post","uri":{"scheme":"https","user":null,"password":null,"host":"api.twitter.com","port":443,"path":"","query":null,"opaque":null,"fragment":null,"parser":{"regexp":{"SCHEME":"(?-mix:\\A[A-Za-z][A-Za-z0-9+\\-.]*\\z)","USERINFO":"(?-mix:\\A(?:%\\h\\h|[!$\u0026-.0-;=A-Z_a-z~])*\\z)","HOST":"(?-mix:\\A(?:(?\u003cIP-literal\u003e\\[(?:(?\u003cIPv6address\u003e(?:\\h{1,4}:){6}(?\u003cls32\u003e\\h{1,4}:\\h{1,4}|(?\u003cIPv4address\u003e(?\u003cdec-octet\u003e[1-9]\\d|1\\d{2}|2[0-4]\\d|25[0-5]|\\d)\\.\\g\u003cdec-octet\u003e\\.\\g\u003cdec-octet\u003e\\.\\g\u003cdec-octet\u003e))|::(?:\\h{1,4}:){5}\\g\u003cls32\u003e|\\h{,4}::(?:\\h{1,4}:){4}\\g\u003cls32\u003e|(?:(?:\\h{1,4}:)?\\h{1,4})?::(?:\\h{1,4}:){3}\\g\u003cls32\u003e|(?:(?:\\h{1,4}:){,2}\\h{1,4})?::(?:\\h{1,4}:){2}\\g\u003cls32\u003e|(?:(?:\\h{1,4}:){,3}\\h{1,4})?::\\h{1,4}:\\g\u003cls32\u003e|(?:(?:\\h{1,4}:){,4}\\h{1,4})?::\\g\u003cls32\u003e|(?:(?:\\h{1,4}:){,5}\\h{1,4})?::\\h{1,4}|(?:(?:\\h{1,4}:){,6}\\h{1,4})?::)|(?\u003cIPvFuture\u003ev\\h+\\.[!$\u0026-.0-;=A-Z_a-z~]+))\\])|\\g\u003cIPv4address\u003e|(?\u003creg-name\u003e(?:%\\h\\h|[!$\u0026-.0-9;=A-Z_a-z~])*))\\z)","ABS_PATH":"(?-mix:\\A\\/(?:%\\h\\h|[!$\u0026-.0-;=@-Z_a-z~])*(?:\\/(?:%\\h\\h|[!$\u0026-.0-;=@-Z_a-z~])*)*\\z)","REL_PATH":"(?-mix:\\A(?:%\\h\\h|[!$\u0026-.0-;=@-Z_a-z~])+(?:\\/(?:%\\h\\h|[!$\u0026-.0-;=@-Z_a-z~])*)*\\z)","QUERY":"(?-mix:\\A(?:%\\h\\h|[!$\u0026-.0-;=@-Z_a-z~\\/?])*\\z)","FRAGMENT":"(?-mix:\\A(?:%\\h\\h|[!$\u0026-.0-;=@-Z_a-z~\\/?])*\\z)","OPAQUE":"(?-mix:\\A(?:[^\\/].*)?\\z)","PORT":"(?-mix:\\A[\\x09\\x0a\\x0c\\x0d ]*\\d*[\\x09\\x0a\\x0c\\x0d ]*\\z)"}}}},"params":{"oauth_token":"709250762-IBCuFDYKJQ5UCHimBbMOXxtvM5gfGG6ZJ3NwToZv","oauth_token_secret":"voU70d7QysP6vZG79kmFiLAaYDnWZAmwhW4wqBJxGYIA1","user_id":"709250762","screen_name":"bknar3ndra","x_auth_expires":"0"},"response":{"cache-control":["no-cache, no-store, must-revalidate, pre-check=0, post-check=0"],"connection":["close"],"content-disposition":["attachment; filename=json.json"],"content-length":["639"],"content-type":["application/json;charset=utf-8"],"date":["Thu, 21 Jul 2016 19:16:07 GMT"],"expires":["Tue, 31 Mar 1981 05:00:00 GMT"],"last-modified":["Thu, 21 Jul 2016 19:16:07 GMT"],"pragma":["no-cache"],"server":["tsa_a"],"set-cookie":["lang=en; Path=/","guest_id=v1%3A146912856713888496; Domain=.twitter.com; Path=/; Expires=Sat, 21-Jul-2018 19:16:07 UTC"],"status":["200 OK"],"strict-transport-security":["max-age=631138519"],"x-access-level":["read-write"],"x-connection-hash":["6e14ae3a2437c370be3efdff143d0588"],"x-content-type-options":["nosniff"],"x-frame-options":["SAMEORIGIN"],"x-rate-limit-limit":["15"],"x-rate-limit-remaining":["9"],"x-rate-limit-reset":["1469129297"],"x-response-time":["31"],"x-transaction":["00074d720025c54c"],"x-twitter-response-tags":["BouncerExempt","BouncerCompliant"],"x-xss-protection":["1; mode=block"]}},"raw_info":{"id":709250762,"id_str":"709250762","name":"Narendra Rajput","screen_name":"bknar3ndra","location":"Bengaluru, India","description":"#programmer, #hacker, #blogger","url":"https://t.co/ENh0momQgQ","entities":{"url":{"urls":[{"url":"https://t.co/ENh0momQgQ","expanded_url":"http://narenonit.blogspot.com","display_url":"narenonit.blogspot.com","indices":[0,23]}]},"description":{"urls":[]}},"protected":false,"followers_count":45,"friends_count":59,"listed_count":1,"created_at":"Sat Jul 21 16:47:20 +0000 2012","favourites_count":1,"utc_offset":null,"time_zone":null,"geo_enabled":false,"verified":false,"statuses_count":15,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"C0DEED","profile_background_image_url":"http://abs.twimg.com/images/themes/theme1/bg.png","profile_background_image_url_https":"https://abs.twimg.com/images/themes/theme1/bg.png","profile_background_tile":false,"profile_image_url":"http://pbs.twimg.com/profile_images/531365649130323968/BtQOSPyD_normal.jpeg","profile_image_url_https":"https://pbs.twimg.com/profile_images/531365649130323968/BtQOSPyD_normal.jpeg","profile_link_color":"0084B4","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":true,"default_profile":true,"default_profile_image":false,"following":false,"follow_request_sent":false,"notifications":false}}}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 33ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:46:07 +0530
+Processing by SessionsController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`twitter_handle`, `access_key`, `secret_key`, `created_at`, `updated_at`) VALUES ('bknar3ndra', '709250762-IBCuFDYKJQ5UCHimBbMOXxtvM5gfGG6ZJ3NwToZv', 'voU70d7QysP6vZG79kmFiLAaYDnWZAmwhW4wqBJxGYIA1', '2016-07-21 19:16:08', '2016-07-21 19:16:08')[0m
+  [1m[35m (2.0ms)[0m  COMMIT
+  Rendered sessions/show.html.haml within layouts/application (1.7ms)
+Completed 200 OK in 791ms (Views: 15.5ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:48:54 +0530
+Processing by SessionsController#show as HTML
+Redirected to http://shopwithtwitter.localtunnel.me:3000/auth/failure
+Completed 302 Found in 8ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/failure" for 127.0.0.1 at 2016-07-22 00:48:55 +0530
+Processing by SessionsController#error as HTML
+Redirected to http://shopwithtwitter.localtunnel.me:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:48:56 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (6.2ms)
+Completed 200 OK in 212ms (Views: 211.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-167193cd81d9330d9ddb5c4ec7b44214fea529aa8a94f3a86e6526e4f652fc02.css?body=1" for 127.0.0.1 at 2016-07-22 00:48:57 +0530
+
+
+Started GET "/assets/screen.self-2f1a176138cd40e1a7e69f89018d0f5f3059a57bf7ab206182b62c883411f3fa.css?body=1" for 127.0.0.1 at 2016-07-22 00:48:57 +0530
+
+
+Started GET "/assets/bootstrap-responsive.self-17b25bbb797599c768ded94b2acec905df13eacfb2d8969f1ac0df0455adb66e.css?body=1" for 127.0.0.1 at 2016-07-22 00:48:57 +0530
+
+
+Started GET "/assets/bootstrap.self-ac07a5170adc56665fe3faa69e2d6b99a3bab5929f05670c31338b0013be5428.css?body=1" for 127.0.0.1 at 2016-07-22 00:48:57 +0530
+
+
+Started GET "/assets/bootstrap-alert.self-159824c5d9afdc0fbf98a18e46efda67b15f3cc75b6ee02cd7f7f583503f850d.js?body=1" for 127.0.0.1 at 2016-07-22 00:48:57 +0530
+
+
+Started GET "/assets/bootstrap-collapse.self-0b9cc2e998665eee499bfc2f64ecb5e5da786ddb5ae097f37f9b2586eb9fbb37.js?body=1" for 127.0.0.1 at 2016-07-22 00:48:58 +0530
+
+
+Started GET "/assets/application.self-fb28094035fc8f155b896e47c199355db7c84fc9d6214ed9800f1022ac2ece52.js?body=1" for 127.0.0.1 at 2016-07-22 00:48:59 +0530
+
+
+Started GET "/auth/twitter?utf8=%E2%9C%93" for 127.0.0.1 at 2016-07-22 00:49:03 +0530
+
+
+Started GET "/auth/twitter/callback?utf8=%E2%9C%93&oauth_token=QVo0tgAAAAAAwMApAAABVg7loLQ&oauth_verifier=hyq1ukztTdHcvjR6isiFPsCo3ucfnZNw" for 127.0.0.1 at 2016-07-22 00:49:07 +0530
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "oauth_token"=>"QVo0tgAAAAAAwMApAAABVg7loLQ", "oauth_verifier"=>"hyq1ukztTdHcvjR6isiFPsCo3ucfnZNw"}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:49:10 +0530
+Processing by SessionsController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1[0m
+  Rendered sessions/show.html.haml within layouts/application (6.4ms)
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 1.2ms)
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: .row
+    2:   .span6
+    3:     %h1
+    4:       = @user.name
+    5:       %small
+    6:         = "@#{@user.screen_name}"
+    7:     - unless @user.description.blank?
+  app/views/sessions/show.html.haml:4:in `_app_views_sessions_show_html_haml___1294236370347229592_70311424711480'
+
+
+  Rendered /Users/narendra/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.7/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.9ms)
+  Rendered /Users/narendra/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (22.3ms)
+  Rendered /Users/narendra/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/narendra/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.7/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (61.6ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:50:09 +0530
+Processing by SessionsController#show as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1
+  Rendered sessions/show.html.haml within layouts/application (2.4ms)
+Completed 200 OK in 16ms (Views: 15.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:50:15 +0530
+Processing by WelcomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1[0m
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:50:15 +0530
+Processing by SessionsController#show as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1
+  Rendered sessions/show.html.haml within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:50:18 +0530
+Processing by SessionsController#show as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1[0m
+  Rendered sessions/show.html.haml within layouts/application (0.8ms)
+Completed 200 OK in 14ms (Views: 12.6ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/signout" for 127.0.0.1 at 2016-07-22 00:50:23 +0530
+Processing by SessionsController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4QRT+UzK2zWgfk1p69b6/SHFVBlks/kzGogYd5CKK68xJEcmI2VhjZF3TeXh6mkSxxIh06fNZ+AReAOyKe4d8g=="}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:50:23 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.5ms)
+Completed 200 OK in 13ms (Views: 12.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:50:25 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.7ms)
+Completed 200 OK in 13ms (Views: 12.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/twitter?utf8=%E2%9C%93" for 127.0.0.1 at 2016-07-22 00:50:28 +0530
+
+
+Started GET "/auth/twitter/callback?utf8=%E2%9C%93&oauth_token=zcAPpgAAAAAAwMApAAABVg7m6Yk&oauth_verifier=qTd2Cf0xBeLS6w8MY6ReZaoS2PXOWngW" for 127.0.0.1 at 2016-07-22 00:50:31 +0530
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "oauth_token"=>"zcAPpgAAAAAAwMApAAABVg7m6Yk", "oauth_verifier"=>"qTd2Cf0xBeLS6w8MY6ReZaoS2PXOWngW"}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:50:34 +0530
+Processing by SessionsController#show as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1
+  Rendered sessions/show.html.haml within layouts/application (0.9ms)
+Completed 200 OK in 27ms (Views: 25.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:50:38 +0530
+Processing by SessionsController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1[0m
+  Rendered sessions/show.html.haml within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 17.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:50:44 +0530
+Processing by WelcomeController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 1ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:50:44 +0530
+Processing by SessionsController#show as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1[0m
+  Rendered sessions/show.html.haml within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/signout" for 127.0.0.1 at 2016-07-22 00:51:09 +0530
+Processing by SessionsController#destroy as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"iXJebOBAz/1++dGFaJZs5qeQHoeE1nOgbVavSpxHX4gpnF5fwxBbWI2dJh0IhmrcgWMwE68oyuxVgnNLHtowrA=="}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:51:10 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.8ms)
+Completed 200 OK in 16ms (Views: 15.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-07-22 00:51:13 +0530
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.haml within layouts/application (0.9ms)
+Completed 200 OK in 15ms (Views: 14.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/auth/twitter?utf8=%E2%9C%93" for 127.0.0.1 at 2016-07-22 00:51:17 +0530
+
+
+Started GET "/auth/twitter/callback?utf8=%E2%9C%93&oauth_token=yHszNwAAAAAAwMApAAABVg7nqd8&oauth_verifier=AxZhZJRAKDVbHQuJ8jTxb1XHWycLfhYq" for 127.0.0.1 at 2016-07-22 00:51:20 +0530
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "oauth_token"=>"yHszNwAAAAAAwMApAAABVg7nqd8", "oauth_verifier"=>"AxZhZJRAKDVbHQuJ8jTxb1XHWycLfhYq"}
+Redirected to http://shopwithtwitter.localtunnel.me:3000/profile
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/profile" for 127.0.0.1 at 2016-07-22 00:51:23 +0530
+Processing by SessionsController#show as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`twitter_handle` = 'bknar3ndra' LIMIT 1
+  Rendered sessions/show.html.haml within layouts/application (2.5ms)
+Completed 200 OK in 21ms (Views: 15.5ms | ActiveRecord: 0.9ms)
