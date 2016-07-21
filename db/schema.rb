@@ -11,6 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160721184637) do
+
+  create_table "products", force: :cascade do |t|
+    t.string   "name",            limit: 1000, null: false
+    t.string   "product_url",     limit: 1000, null: false
+    t.string   "product_img_url", limit: 1000, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "user_products", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4, null: false
+    t.integer  "product_id", limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "twitter_handle", limit: 255, null: false
+    t.string   "access_key",     limit: 255, null: false
+    t.string   "secret_key",     limit: 255, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
 end
