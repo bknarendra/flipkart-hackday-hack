@@ -1,19 +1,13 @@
-.row
-  .span6
+.row{style: "padding-top: 40px;"}
+  .col-sm-12
     %h1
       = "#{@db_user_obj.twitter_handle}, Happy Shopping!!"
-
-- @user_products.each_slice(2) do |products|
-  .row
-    - products.each do |product|
-      .span6
-        =link_to image_tag(product[:image_url]), product[:product_url]
-      .span2
-        =product[:name]
-
-.row
-  .span2.offset4
-    = form_tag(signout_path, method: 'delete') do
-      %fieldset
-        %button.btn.btn-danger#sign_out
-          = t('button.sign_out')
+.container-fluid
+  - @user_products.each_slice(3) do |products|
+    .row
+      - products.each do |product|
+        .span3{style: "padding-left: 10px;"}
+          .row
+            =link_to image_tag(product[:image_url], style: "height: auto;"), product[:product_url]
+          .row{style: 'font-size: 16px;'}
+            =link_to product[:name], product[:product_url]

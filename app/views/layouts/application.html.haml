@@ -24,6 +24,10 @@
             %span.icon-bar
             %span.icon-bar
           = link_to('Shop With Twitter', root_path, class: 'brand')
+          .nav-collapse
+            %ul.nav
+              %li
+                = link_to(t('button.sign_out'), signout_path, style: "padding-top: 25px;font-size: 20px;padding-left: 600px;")
     .container
       .row
         .col-sm-12

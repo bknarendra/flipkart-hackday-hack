@@ -9,6 +9,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'twitter-text'
+gem 'mechanize'
+gem 'pry'
 
 group :assets do
   gem 'sass-rails', '>= 4.0.3'
